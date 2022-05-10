@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "./Banner";
 import bg from "../../assets/images/bg.png";
+import Details from "./Details";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       >
         <Banner />
       </div>
+      <Details></Details>
     </div>
   );
 };
