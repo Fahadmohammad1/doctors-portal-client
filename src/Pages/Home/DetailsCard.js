@@ -7,7 +7,7 @@ const DetailsCard = ({ img, bg, cardTitle }) => {
         <img src={img} alt="Album" />
       </figure>
       <div class="card-body">
-        <h2 class="card-title text-accent">{cardTitle}</h2>
+        <h2 class="card-title">{cardTitle}</h2>
         <p>Click the button to listen on Spotiwhy app.</p>
       </div>
     </div>

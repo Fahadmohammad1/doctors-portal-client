@@ -3,6 +3,8 @@ import Banner from "./Banner";
 import bg from "../../assets/images/bg.png";
 import Details from "./Details";
 import Services from "./Services";
+import DentalCare from "./DentalCare";
+import MakeAppointment from "./MakeAppointment";
 
 const Home = () => {
   return (
@@ -21,6 +23,10 @@ const Home = () => {
       <div>
         <Services></Services>
       </div>
+      <div className="lg:px-40 lg:mt-10 lg:mb-40">
+        <DentalCare></DentalCare>
+      </div>
+      <MakeAppointment></MakeAppointment>
     </div>
   );
 };
