@@ -10,7 +10,7 @@ const DentalCare = () => {
           alt=""
           className=" lg:max-w-sm rounded-lg shadow-2xl"
         />
-        <div>
+        <div className="lg:pl-24">
           <h1 className="text-5xl font-bold">
             Exeptional Dental Care, on Your Terms
           </h1>
