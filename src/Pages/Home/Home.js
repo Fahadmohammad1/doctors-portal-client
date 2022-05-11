@@ -2,10 +2,11 @@ import React from "react";
 import Banner from "./Banner";
 import bg from "../../assets/images/bg.png";
 import Details from "./Details";
+import Services from "./Services";
 
 const Home = () => {
   return (
-    <div>
+    <div className="px-4 xl:px-0">
       <div
         style={{
           backgroundImage: `url(${bg})`,
@@ -17,6 +18,9 @@ const Home = () => {
         <Banner />
       </div>
       <Details></Details>
+      <div>
+        <Services></Services>
+      </div>
     </div>
   );
 };

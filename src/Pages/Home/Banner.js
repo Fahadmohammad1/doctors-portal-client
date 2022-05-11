@@ -2,9 +2,9 @@ import React from "react";
 import chair from "../../assets/images/chair.png";
 const Banner = () => {
   return (
-    <div class="hero min-h-screen px-12">
+    <div class="hero min-h-screen xl:px-8">
       <div class="hero-content flex-col lg:flex-row-reverse">
-        <img src={chair} class="max-w-sm rounded-lg shadow-2xl" alt="" />
+        <img src={chair} class="lg:max-w-2xl rounded-lg shadow-2xl" alt="" />
         <div className="xl:pr-16">
           <h1 class="text-5xl font-bold">Your New Smile Starts Here</h1>
           <p class="py-6">
