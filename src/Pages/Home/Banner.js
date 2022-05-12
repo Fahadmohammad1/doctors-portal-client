@@ -6,7 +6,7 @@ const Banner = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
           src={chair}
-          className="lg:max-w-2xl rounded-lg shadow-2xl"
+          className="lg:max-w-2xl  rounded-lg shadow-2xl"
           alt=""
         />
         <div className="xl:pr-16">
