@@ -37,7 +37,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
             <input
               type="text"
               disabled
-              value={format(date, "PP")}
+              value={format(date || new Date(), "PP")}
               className="input input-bordered w-full "
             />
             <select name="slot" className="select select-bordered w-full">

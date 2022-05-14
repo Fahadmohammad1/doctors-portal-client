@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import auth from "../../firebase.init";
+
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
@@ -12,6 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
   const {
     register,
     formState: { errors },
@@ -126,6 +128,14 @@ const Login = () => {
               New to Doctor's Portal?{" "}
               <Link className="text-secondary" to="/signup">
                 Create New Account
+              </Link>
+            </small>
+          </p>
+          <p className="text-center">
+            <small>
+              Forget Password?{" "}
+              <Link className="text-secondary" to="/resetPassword">
+                Reset
               </Link>
             </small>
           </p>
