@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import auth from "../../firebase.init";
 import {
   useSignInWithEmailAndPassword,
@@ -20,6 +20,13 @@ const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  let from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (user || gUser) {
+      navigate(from, { replace: true });
+    }
+  }, [user, gUser, from, navigate]);
 
   if (loading || gLoading) {
     return <Loading></Loading>;
@@ -27,16 +34,12 @@ const Login = () => {
 
   let signInError;
 
-  let from = location.state?.from?.pathname || "/";
-
   if (error || gError) {
     signInError = (
       <p className="text-red-600">{error?.message || gError?.message}</p>
     );
   }
-  if (user || gUser) {
-    navigate(from, { replace: true });
-  }
+
   const onSubmit = (data) => {
     console.log(data);
     signInWithEmailAndPassword(data.email, data.password);
