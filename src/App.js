@@ -9,6 +9,10 @@ import RequireAuth from "./Pages/Login/RequireAuth";
 import ResetPass from "./Pages/Login/ResetPass";
 import SignUp from "./Pages/Login/SignUp";
 import Navbar from "./Pages/Shared/Navbar";
+import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import MyAppointments from "./Pages/Dashboard/MyAppointments";
+import MyReview from "./Pages/Dashboard/MyReview";
 
 function App() {
   return (
@@ -24,6 +28,17 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard></Dashboard>
+            </RequireAuth>
+          }
+        >
+          <Route index element={<MyAppointments></MyAppointments>} />
+          <Route path="review" element={<MyReview></MyReview>} />
+        </Route>
         <Route path="/login" element={<Login></Login>}>
           {" "}
         </Route>
