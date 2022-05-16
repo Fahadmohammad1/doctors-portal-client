@@ -8,20 +8,28 @@ import {
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
 import { Link, useNavigate } from "react-router-dom";
+import useToken from "../../Hooks/useToken";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const [signInWithGoogle, , gLoading, gError] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
-  const [createUserWithEmailAndPassword, , loading, error] =
+  const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+  const [token] = useToken(user || gUser);
+
+  if (token) {
+    navigate("/appointment");
+  }
 
   if (loading || gLoading || updating) {
     return <Loading></Loading>;
@@ -37,10 +45,10 @@ const SignUp = () => {
     );
   }
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
-    navigate("/appointment");
+    reset();
   };
   return (
     <div className="flex h-screen justify-center items-center">
