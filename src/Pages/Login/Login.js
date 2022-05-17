@@ -21,10 +21,11 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  const [token] = useToken(user || gUser);
-
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+
+  const [token] = useToken(user || gUser);
+
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
