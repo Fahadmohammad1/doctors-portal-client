@@ -19,7 +19,7 @@ const Users = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  console.log(users);
+
   return (
     <div class="overflow-x-auto">
       <table class="table w-full">

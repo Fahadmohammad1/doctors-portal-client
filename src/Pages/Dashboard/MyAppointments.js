@@ -19,7 +19,6 @@ const MyAppointments = () => {
         },
       })
         .then((res) => {
-          console.log(res);
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
             localStorage.removeItem("accessToken");
@@ -28,11 +27,10 @@ const MyAppointments = () => {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
           setAppointments(data);
         });
     }
-  }, [user]);
+  }, [user, navigate]);
   return (
     <div className="mt-3">
       <div className="overflow-x-auto">
