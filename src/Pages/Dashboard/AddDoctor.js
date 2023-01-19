@@ -1,5 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
+import { toast } from "react-toastify";
+import Loading from "../Shared/Loading";
 
 const AddDoctor = () => {
   const {
@@ -9,13 +12,58 @@ const AddDoctor = () => {
     reset,
   } = useForm();
 
+  const imgStorageKey = "17a1f31c430dd052479eea1b87a88985";
+
+  const { data: services, isLoading } = useQuery("services", () =>
+    fetch("http://localhost:5000/service").then((res) => res.json())
+  );
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   const onSubmit = async (data) => {
-    console.log(data);
-    reset();
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          const img = result.data.url;
+          const doctor = {
+            name: data.name,
+            email: data.email,
+            speciality: data.speciality,
+            img: img,
+          };
+          // send to your database
+          fetch("http://localhost:5000/doctor", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(doctor),
+          })
+            .then((res) => res.json())
+            .then((inserted) => {
+              if (inserted.insertedId) {
+                toast.success("Doctor added successfully");
+                reset();
+              } else {
+                toast.error("Failed to add the doctor");
+              }
+            });
+        }
+        console.log(result);
+      });
   };
   return (
     <div>
-      <h2 className="text-3xl">Add a New Doctor</h2>
+      <h2 className="text-2xl">Add a New Doctor</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control w-full max-w-xs">
           <label className="label">
@@ -40,13 +88,14 @@ const AddDoctor = () => {
             )}
           </label>
         </div>
+
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
           <input
             type="email"
-            placeholder="Type here"
+            placeholder="Email"
             className="input input-bordered w-full max-w-xs"
             {...register("email", {
               required: {
@@ -74,32 +123,36 @@ const AddDoctor = () => {
         </div>
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text">Password</span>
+            <span className="label-text">Spaciality</span>
+          </label>
+          <select
+            {...register("spaciality")}
+            class="select w-full max-w-xs input-bordered"
+          >
+            {services.map((service) => (
+              <option>{service.name}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Photo</span>
           </label>
           <input
-            type="password"
-            placeholder="Your Password"
+            type="file"
             className="input input-bordered w-full max-w-xs"
-            {...register("password", {
+            {...register("image", {
               required: {
                 value: true,
-                message: "Password is Required",
-              },
-              minLength: {
-                value: 6,
-                message: "Must be 6 character or longer",
+                message: "image is Required",
               },
             })}
           />
           <label className="label">
-            {errors.password?.type === "required" && (
+            {errors.image?.type === "required" && (
               <span className="label-text-alt text-red-600">
-                {errors.password.message}
-              </span>
-            )}
-            {errors.password?.type === "minLength" && (
-              <span className="label-text-alt text-red-600">
-                {errors.password.message}
+                {errors.name.message}
               </span>
             )}
           </label>
