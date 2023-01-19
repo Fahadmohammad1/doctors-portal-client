@@ -5,12 +5,15 @@ const UserRaw = ({ user, refetch }) => {
   const { email, role } = user;
 
   const makeAdmin = () => {
-    fetch(`https://pure-ravine-48574.herokuapp.com/user/admin/${email}`, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://doctors-portal-server-drab-one.vercel.app/user/admin/${email}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 403) {
           toast.error("Failed to make an Admin");

@@ -9,7 +9,7 @@ const Users = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch("https://pure-ravine-48574.herokuapp.com/user", {
+    fetch("https://doctors-portal-server-drab-one.vercel.app/user", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

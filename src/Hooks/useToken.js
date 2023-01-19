@@ -7,7 +7,7 @@ const useToken = (user) => {
     const currentUser = { email: email };
 
     if (email) {
-      fetch(`https://pure-ravine-48574.herokuapp.com/user/${email}`, {
+      fetch(`https://doctors-portal-server-drab-one.vercel.app/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

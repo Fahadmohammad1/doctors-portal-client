@@ -13,7 +13,7 @@ const MyAppointments = () => {
   useEffect(() => {
     if (user?.email) {
       fetch(
-        `https://pure-ravine-48574.herokuapp.com/booking?patient=${user?.email}`,
+        `https://doctors-portal-server-drab-one.vercel.app/booking?patient=${user?.email}`,
         {
           method: "GET",
           headers: {

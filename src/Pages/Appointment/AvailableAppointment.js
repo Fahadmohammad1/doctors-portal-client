@@ -15,7 +15,7 @@ const AvailableAppointment = ({ date }) => {
     refetch,
   } = useQuery(["availabe", formatedDate], () =>
     fetch(
-      `https://pure-ravine-48574.herokuapp.com/available?date=${formatedDate}`
+      `https://doctors-portal-server-drab-one.vercel.app/available?date=${formatedDate}`
     ).then((res) => res.json())
   );
 

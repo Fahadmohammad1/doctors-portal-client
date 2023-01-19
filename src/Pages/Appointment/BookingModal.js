@@ -28,7 +28,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       phone: e.target.phone.value,
     };
 
-    fetch("https://pure-ravine-48574.herokuapp.com/booking", {
+    fetch("https://doctors-portal-server-drab-one.vercel.app/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
