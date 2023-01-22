@@ -14,9 +14,9 @@ const AvailableAppointment = ({ date }) => {
     isLoading,
     refetch,
   } = useQuery(["availabe", formatedDate], () =>
-    fetch(
-      `https://doctors-portal-server-drab-one.vercel.app/available?date=${formatedDate}`
-    ).then((res) => res.json())
+    fetch(`http://localhost:5000/available?date=${formatedDate}`).then((res) =>
+      res.json()
+    )
   );
 
   if (isLoading) {

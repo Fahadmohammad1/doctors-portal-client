@@ -12,15 +12,12 @@ const MyAppointments = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(
-        `https://doctors-portal-server-drab-one.vercel.app/booking?patient=${user?.email}`,
-        {
-          method: "GET",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      )
+      fetch(`http://localhost:5000/booking?patient=${user?.email}`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
