@@ -10,14 +10,19 @@ const AvailableAppointment = ({ date }) => {
   const formatedDate = format(date, "PP");
 
   const {
-    data: services,
+    data: services = [],
     isLoading,
     refetch,
-  } = useQuery(["availabe", formatedDate], () =>
-    fetch(`http://localhost:5000/available?date=${formatedDate}`).then((res) =>
-      res.json()
-    )
-  );
+  } = useQuery({
+    queryKey: ["services", formatedDate],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/available?date=${formatedDate}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
 
   if (isLoading) {
     return <Loading></Loading>;
