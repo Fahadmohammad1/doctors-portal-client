@@ -17,13 +17,13 @@ const AvailableAppointment = ({ date }) => {
     queryKey: ["services", formatedDate],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/available?date=${formatedDate}`
+        `http://localhost:5000/v2/available?date=${formatedDate}`
       );
       const data = await res.json();
       return data;
     },
   });
-
+  console.log(services);
   if (isLoading) {
     return <Loading></Loading>;
   }
