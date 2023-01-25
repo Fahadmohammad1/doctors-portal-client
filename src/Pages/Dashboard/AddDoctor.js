@@ -15,7 +15,9 @@ const AddDoctor = () => {
   const imgStorageKey = "17a1f31c430dd052479eea1b87a88985";
 
   const { data: services, isLoading } = useQuery("services", () =>
-    fetch("http://localhost:5000/service").then((res) => res.json())
+    fetch("https://doctors-portal-server-drab-one.vercel.app/service").then(
+      (res) => res.json()
+    )
   );
   if (isLoading) {
     return <Loading></Loading>;
@@ -40,7 +42,7 @@ const AddDoctor = () => {
             img: img,
           };
           // send to your database
-          fetch("http://localhost:5000/doctor", {
+          fetch("https://doctors-portal-server-drab-one.vercel.app/doctor", {
             method: "POST",
             headers: {
               "content-type": "application/json",

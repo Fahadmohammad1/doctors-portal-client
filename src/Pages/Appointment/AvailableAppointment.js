@@ -17,13 +17,13 @@ const AvailableAppointment = ({ date }) => {
     queryKey: ["services", formatedDate],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/v2/available?date=${formatedDate}`
+        `https://doctors-portal-server-drab-one.vercel.app/v2/available?date=${formatedDate}`
       );
       const data = await res.json();
       return data;
     },
   });
-  console.log(services);
+
   if (isLoading) {
     return <Loading></Loading>;
   }

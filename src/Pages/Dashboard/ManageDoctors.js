@@ -4,7 +4,7 @@ import Loading from "../Shared/Loading";
 
 const ManageDoctors = () => {
   const { data: doctors, isLoading } = useQuery("doctors", () =>
-    fetch("http://localhost:5000/doctor", {
+    fetch("https://doctors-portal-server-drab-one.vercel.app/doctor", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

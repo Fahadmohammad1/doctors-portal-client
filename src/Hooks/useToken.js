@@ -7,7 +7,7 @@ const useToken = (user) => {
     const currentUser = { email: email };
 
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
+      fetch(`https://doctors-portal-server-drab-one.vercel.app/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

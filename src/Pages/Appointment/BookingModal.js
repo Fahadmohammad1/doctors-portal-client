@@ -28,7 +28,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       phone: e.target.phone.value,
     };
 
-    fetch("http://localhost:5000/booking", {
+    fetch("https://doctors-portal-server-drab-one.vercel.app/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,9 +41,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
         if (data.success) {
           toast.success(`Appointment is set, ${formatedDate} at ${slot}`);
         } else {
-          toast.error(
-            `Already have an appointment on ${data.booking?.date} at ${slot}`
-          );
+          toast.error(`Already have an appointment on ${data.booking?.date}`);
         }
         refetch();
         setTreatment(null);
